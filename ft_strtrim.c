@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 int is_find(char c,const char*set)
 {
     int i;
@@ -55,35 +54,27 @@ char *ft_strtrim(char const *s1, char const *set)
     char *str;
 
     if (s1==NULL || set==NULL)
-    {
         return (NULL);
-    }
     start = begin_function(s1,set);
     end=end_function(s1,set ,ft_strlen(s1)-1);
     if(start > end)
     {
-        return (NULL);//still understand
+        str=malloc(1);
+        if(str==NULL)
+            return (NULL);
+        str[0]='\0';
+        return(str);
     }
     str_len= end - start + 1;
     str=malloc(sizeof(char) * (str_len+1));
     i=0;
     if(str==NULL)
-    {
         return(NULL);
-    }
-    while(str_len >= 0)
+    while(i<str_len)
     {
-        str[i]=s1[start];
-        start++;
+        str[i]=s1[start+i];
         i++;
-        str_len--;
     }
     str[i]='\0';
     return (str);
-}
-int main()
-{
-    char str[]="abk, kba";
-    char set[]="ab";
-    printf("%s",ft_strtrim(str,set));
 }
