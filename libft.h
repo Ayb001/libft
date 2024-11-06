@@ -32,6 +32,8 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char **ft_split(char const *s, char c);
+char *ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
