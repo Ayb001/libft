@@ -23,15 +23,14 @@ static int count_word(const char *s,char c)
     {
         while(s[i]==c)
             i++;
-        while(s[i]==c)
+        if (s[i] != '\0')
         {
-            i++;
-            if((s[i]==c && s[i+1]!=c) || (s[i+1]=='\0'))
+            count++;
+            while(s[i+1]!= c && s[i+1]!='\0')
             {
-                count++;
+                i++;
             }
         }
-        i++;
     }
     return (count);
 }
@@ -41,7 +40,7 @@ static char *split_copy(const char *s,int len_word)
     char *str;
 
     i=0;
-    str=malloc(sizeof(char *)*(len_word+1));
+    str=malloc(sizeof(char) * (len_word + 1));
     if (!str)
     {
         return (NULL);
@@ -54,7 +53,7 @@ static char *split_copy(const char *s,int len_word)
     str[i]='\0';
     return (str);
 }
-char **ft_split(char const *s, char c)
+char **ft_split(char const *s, char c)//still need to understand and add ft_free
 {
     int i;
     int j;
@@ -71,14 +70,19 @@ char **ft_split(char const *s, char c)
     j=0;
     while(s[i]!='\0')
     {
-        while(s[i]==c)
+        while (s[i] == c)
             i++;
-        if((s[i+1]==c && (s[i+1]== c) || s[i+1] == '\0'))
+        len_word = 0;
+        while (s[i + len_word] != c && s[i + len_word] != '\0')
+            len_word++;
+                if (len_word > 0)
         {
-            result[j]=split_copy(s+i,len_word);
-            j++
+            result[j] = split_copy(s + i, len_word);
+            if (!result[j])
+                return (NULL);
+            j++;
+            i += len_word;
         }
-        i++;
     }
     result[j]=NULL;
     return (result);
