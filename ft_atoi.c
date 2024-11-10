@@ -40,9 +40,3 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-#include <stdio.h> 
-int main()
-{
-	char *str=NULL;
-	printf("%d \n",ft_atoi(str));
-}
