@@ -19,7 +19,7 @@ int	ft_atoi(const char *str)
 	int	sign;
 
 	i = 0;
-	result = 1;
+	result = 0;
 	sign = 1;
 	while (str[i] != 32 && (str[i] >= 9 && str[i] <= 13))
 	{
@@ -39,4 +39,9 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
+}
+#include <stdio.h> 
+int main()
+{
+	printf("%d",ft_atoi("1991"));
 }
