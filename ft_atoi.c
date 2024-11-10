@@ -43,8 +43,6 @@ int	ft_atoi(const char *str)
 #include <stdio.h> 
 int main()
 {
-	printf("%d \n",ft_atoi("abc"));
-	printf("%d \n",ft_atoi("   -42"));
-	printf("%d \n",ft_atoi("\n\t 1991"));
-	printf("%d \n",ft_atoi(" -0042"));
+	char *str=NULL;
+	printf("%d \n",ft_atoi(str));
 }
