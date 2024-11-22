@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 03:23:40 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/02 03:23:43 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/22 02:30:43 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/22 02:30:50 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)// do we should cast 
+char	*ft_strrchr(const char *s, int c)
 {
 	int		i;
 	char	a;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 09:27:15 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/02 09:27:19 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/20 11:43:53 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/20 11:44:01 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	result;
-	int	sign;
+	int		i;
+	long	result;
+	int		sign;
 
 	i = 0;
 	result = 0;

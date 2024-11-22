@@ -5,31 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 15:43:35 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/01 15:43:38 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/22 02:08:21 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/22 02:08:24 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	dst_len;
-	size_t	src_len;
+	size_t	j;
+	size_t	len_d;
+	size_t	len_s;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	i = 0;
-	if (dstsize < dst_len)//still issue here
+	j = 0;
+	len_d = ft_strlen(dst);
+	len_s = ft_strlen(src);
+	if (size <= len_d)
+		return (size + len_s);
+	while (src[j] != '\0' && j < (size - len_d - 1))
 	{
-		return ((dst_len) + dstsize);
+		dst[len_d + j] = src[j];
+		j++;
 	}
-	while (src[i] != '\0' && i < (dstsize - dst_len - 1))//still have issue
-	{
-		dst[dst_len + i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst_len + src_len);
+	dst[len_d + j] = '\0';
+	return (len_d + len_s);
 }

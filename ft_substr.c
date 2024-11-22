@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 01:22:52 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/03 01:22:56 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/22 02:44:16 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/22 02:44:19 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,19 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	char	*str;
+	char	*strmalloc;
+	size_t	slen;
 
-	i = 0;
-	if (start > ft_strlen(s))
-	{
-		str = malloc(sizeof(char) * 1);
-		str[0] = '\0';
-		return (str);
-	}
-	if (len > ft_strlen(&s[start]))
-	{
-		len = ft_strlen(&s[start]);
-	}
-	str = malloc(len * sizeof(char));
-	if (str == '\0' && i < len)
+	if (!s)
 		return (NULL);
-	while (i < len)
-	{
-		str[i] = s[start];
-		i++;
-		start++;
-	}
-	return (str);
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_strdup(""));
+	if (len > slen - start)
+		len = slen - start;
+	strmalloc = malloc(sizeof(char) * (len + 1));
+	if (!strmalloc)
+		return (NULL);
+	ft_strlcpy(strmalloc, s + start, len + 1);
+	return (strmalloc);
 }

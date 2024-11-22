@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 09:37:06 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/02 09:37:11 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/20 12:11:49 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/20 12:11:53 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t			i;
 
 	i = 0;
+	if (size != 0 && count > SIZE_MAX / size)
+	{
+		return (0);
+	}
 	str = malloc(count * size);
-	if (str == '\0')
+	if (str == NULL)
 	{
 		return (NULL);
 	}
@@ -29,17 +33,4 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (str);
-}//test int main
-
-/*#include <stdio.h>
-int main()
-{
-    int n=5;
-    int *array=(int *)ft_calloc(n, sizeof(n));
-    for(int i=0;i<n;i++)
-    {
-        printf("%d \n", array[i]);
-    }
-    free(array);
-    return 0;
-}*/
+}

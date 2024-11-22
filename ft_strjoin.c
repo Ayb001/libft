@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 18:51:43 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/03 18:51:47 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/22 02:07:51 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/22 02:07:53 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
-	size_t	len;
 	size_t	j;
-	char	*str;
+	char	*strmalloc;
+	size_t	len;
 
 	i = 0;
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(len * sizeof(char));
+	strmalloc = malloc(sizeof(char) * len + 1);
+	if (strmalloc == NULL)
+	{
+		return (NULL);
+	}
 	while (s1[i] != '\0')
 	{
-		str[j] = s1[i];
+		strmalloc[i] = s1[i];
 		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		strmalloc[i + j] = s2[j];
 		j++;
 	}
-	i = 0;
-	while (s2[i] != '\0')
-	{
-		str[j + i] = s2[i];
-		i++;
-	}
-	return (str);
+	strmalloc[i + j] = '\0';
+	return (strmalloc);
 }

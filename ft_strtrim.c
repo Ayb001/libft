@@ -5,76 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 22:40:42 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/03 22:40:46 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/22 02:34:26 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/22 02:34:29 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-int is_find(char c,const char*set)
-{
-    int i;
 
-    i = 0;
-    while (set[i]!='\0')
-    {
-        if (set[i]==c)
-        {
-            return(1);
-        }
-        i++;
-    }
-    return (0);
-}
-int begin_function(const char *s,const char *set)
+static int	is_set(char c, char const *set)
 {
-    int i;
+	int	i;
 
-    i=0;
-    while (s[i] != '\0' && is_find(s[i],set) != 0)
-    {
-        i++;
-    }
-    return(i);
+	i = 0;
+	while (set[i] != '\0')
+	{
+		if (set[i] == c)
+		{
+			return (1);
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return (0);
 }
-int end_function(const char *s,const char *set , int len)
-{
-    while (len >= 0 && is_find(s[len],set) != 0)
-    {
-        len--;
-    }
-    return(len);
-}
-char *ft_strtrim(char const *s1, char const *set)
-{
-    int str_len ;
-    int start;
-    int end;
-    int i;
-    char *str;
 
-    if (s1==NULL || set==NULL)
-        return (NULL);
-    start = begin_function(s1,set);
-    end=end_function(s1,set ,ft_strlen(s1)-1);
-    if(start > end)
-    {
-        str=malloc(1);
-        if(str==NULL)
-            return (NULL);
-        str[0]='\0';
-        return(str);
-    }
-    str_len= end - start + 1;
-    str=malloc(sizeof(char) * (str_len+1));
-    i=0;
-    if(str==NULL)
-        return(NULL);
-    while(i<str_len)
-    {
-        str[i]=s1[start+i];
-        i++;
-    }
-    str[i]='\0';
-    return (str);
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int		i;
+	int		j;
+	int		len;
+	int		lenm;
+	char	*strmalloc;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(s1) - 1;
+	while (is_set(s1[len], set) == 1)
+		len--;
+	while (is_set(s1[i], set) == 1)
+		i++;
+	lenm = len - i + 1;
+	strmalloc = ft_substr(s1, i, lenm);
+	while (i <= len && strmalloc != NULL)
+	{
+		strmalloc[j] = s1[i];
+		j++;
+		i++;
+	}
+	if (strmalloc != NULL)
+		strmalloc[j] = '\0';
+	return (strmalloc);
 }

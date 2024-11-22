@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 09:04:45 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/02 09:04:49 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/20 16:55:46 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/20 16:55:50 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		return (0);
 	}
-	while (s3[i] != '\0' && s4[i] != '\0' && s3[i] == s4[i] && i < n)
+	while (i < n - 1 && s3[i] == s4[i])
 	{
 		i++;
 	}

@@ -1,94 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 08:52:09 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/02 08:52:12 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/20 14:53:24 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/20 14:53:29 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-static int ft_count_degit(long long n)
-{
-    int count;
 
-    count=0;
-    while(n>0)
-    {
-        n=n/10;
-        count++;
-    }
-    return (count);
-}
-static char *ft_negative(char *str,long long k)
+static int	ft_count(long n)
 {
-    int len;
-    int tmp;
-    k=k*-1;
-    len=ft_count_degit(k);
-    tmp=len;
-    str=malloc(sizeof(char) * (len+2));
-    if(!str)
-        return (NULL);
-    str[0]='-';
-    while(len>0)
-    {
-        str[len]=k%10+'0';
-        k=k/10;
-        len--;
-    }
-    str[tmp+1]='\0';
-    return(str);
+	int	count_degit;
+
+	count_degit = 0;
+	while (n > 0)
+	{
+		n = n / 10;
+		count_degit++;
+	}
+	return (count_degit);
 }
-static char *ft_ispositive(char *str,long long k)
+
+static char	*ft_ispositive(long n, char *str)
 {
-    int len;
-    int tmp;
-    len=ft_count_degit(k);
-    tmp=len;
-    str=malloc(sizeof(char) * (len+1));
-    if(!str)
-        return(NULL);
-    while (len>0)
-    {
-        str[len-1]=k%10+'0';
-        k=k/10;
-        len--;
-    }
-    str[tmp]='\0';
-    return(str);
+	int	len;
+	int	tmp;
+
+	len = ft_count(n);
+	tmp = len;
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	while (len > 0)
+	{
+		str[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	str[tmp] = '\0';
+	return (str);
 }
-char *ft_itoa(int n)
+
+static char	*ft_isnegative(long n, char *str)
 {
-    long long k;
-    k=n;
-    char *str;
-    str=NULL;
-    if (k==0)
-    {
-        str=malloc(sizeof(char) * 2);
-        if(!str)
-            return(NULL);
-        str[0]='0';
-        str[1]='\0';
-        return (str);
-    }
-    else if(k>0)
-    {
-        str=ft_ispositive(str,k);
-    }
-    else
-    {
-        str=ft_negative(str,k);
-    }
-    return (str);
+	int	len;
+	int	tmp;
+
+	n = n * -1;
+	len = ft_count(n);
+	tmp = len;
+	str = malloc(sizeof(char) * (len + 2));
+	if (str == NULL)
+		return (NULL);
+	str[0] = '-';
+	while (len > 0)
+	{
+		str[len] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	str[tmp + 1] = '\0';
+	return (str);
 }
-#include <stdio.h>
-int main()
+
+char	*ft_itoa(int n)
 {
-    printf("%s",ft_itoa(2147483648));
-    return (0);
+	long	k;
+	char	*str;
+
+	k = n;
+	str = NULL;
+	if (n == 0)
+	{
+		str = malloc(sizeof(char) * 2);
+		if (str == NULL)
+			return (NULL);
+		str[0] = '0';
+		str[1] = '\0';
+	}
+	else if (k > 0)
+	{
+		str = ft_ispositive(k, str);
+	}
+	else
+	{
+		str = ft_isnegative(k, str);
+	}
+	return (str);
 }

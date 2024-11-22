@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 09:26:21 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/10/31 09:26:24 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/20 11:50:08 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/20 11:50:11 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	*ft_bzero(void *s, size_t n)
 	size_t			i;
 	unsigned char	*b;
 
+	i = 0;
 	b = (unsigned char *)s;
 	while (i < n)
 	{

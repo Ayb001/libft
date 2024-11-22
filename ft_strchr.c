@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayaghjed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 02:28:16 by ayaghjed          #+#    #+#             */
-/*   Updated: 2024/11/02 02:28:19 by ayaghjed         ###   ########.fr       */
+/*   Created: 2024/11/21 23:13:06 by ayaghjed          #+#    #+#             */
+/*   Updated: 2024/11/21 23:13:09 by ayaghjed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)//do we should cast 
+char	*ft_strchr(const char *s, int c)
 {
 	int		i;
 	char	a;
@@ -28,8 +28,6 @@ char	*ft_strchr(const char *s, int c)//do we should cast
 		i++;
 	}
 	if (a == '\0')
-	{
 		return ((char *)&s[i]);
-	}
 	return (NULL);
 }
