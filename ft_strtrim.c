@@ -12,61 +12,32 @@
 
 #include "libft.h"
 
-static int	*hash_table(int *check_tab, const char *set)
-{
-	int	i;
-
-	if (!check_tab)
-		return (NULL);
-	memset(check_tab, 0, UCHAR_MAX + 1);
-	i = 0;
-	while (set[i] != '\0')
-	{
-		check_tab[(unsigned char)set[i]] = 1;
-		i++;
-	}
-	return (check_tab);
-}
-
-static char	*ft_set_str(int start, int end, const char *s1)
-{
-	char	*str;
-
-	if (start > end)
-	{
-		str = (char *)malloc(1);
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
-	str = (char *)malloc(end - start + 2);
-	if (!str)
-		return (NULL);
-	memcpy(str, s1 + start, end - start + 1);
-	str[end - start + 1] = '\0';
-	return (str);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		check_tab[UCHAR_MAX + 1];
-	int		start;
-	int		end;
-	char	*str;
+	size_t	start;
+	size_t	end;
+	size_t	size;
+	size_t	i;
+	char	*p;
 
 	if (!s1)
 		return (NULL);
 	if (!set)
-		return (strdup(s1));
-	hash_table(check_tab, set);
+		return (ft_strdup(s1));
 	start = 0;
-	while (s1[start] && check_tab[(unsigned char)s1[start]] == 1)
+	end = ft_strlen(s1);
+	while (start < end && ft_strchr(set, s1[start]) != NULL)
 		start++;
-	end = strlen(s1) - 1;
-	while (end >= start && check_tab[(unsigned char)s1[end]] == 1)
+	while (start < end && ft_strchr(set, s1[end - 1]) != NULL)
 		end--;
-	str = ft_set_str(start, end, s1);
-	return (str);
+	size = end - start;
+	p = malloc(size + 1);
+	if (!p)
+		return (NULL);
+	i = 0;
+	while (i < size)
+		p[i++] = s1[start++];
+	p[i] = 0;
+	return (p);
 }
 

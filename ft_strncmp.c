@@ -25,7 +25,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	{
 		return (0);
 	}
-	while (s3!='\0' && i<n-1)
+	while (s3[i]!='\0' && i<n-1)
 	{
 		if (s3[i] != s4[i])
 		{
