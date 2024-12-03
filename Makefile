@@ -1,4 +1,3 @@
-# Variables
 NAME = libft.a
 CC = cc
 cflags = -Wall -Wextra -Werror
@@ -30,4 +29,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: clean
