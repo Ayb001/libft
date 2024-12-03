@@ -13,8 +13,6 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdio.h> /*delet*/
-# include <string.h>/*delet*/
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>

@@ -12,49 +12,61 @@
 
 #include "libft.h"
 
-static int	is_set(char c, char const *set)
+static int	*hash_table(int *check_tab, const char *set)
 {
 	int	i;
 
+	if (!check_tab)
+		return (NULL);
+	memset(check_tab, 0, UCHAR_MAX + 1);
 	i = 0;
 	while (set[i] != '\0')
 	{
-		if (set[i] == c)
-		{
-			return (1);
-		}
-		else
-		{
-			i++;
-		}
+		check_tab[(unsigned char)set[i]] = 1;
+		i++;
 	}
-	return (0);
+	return (check_tab);
+}
+
+static char	*ft_set_str(int start, int end, const char *s1)
+{
+	char	*str;
+
+	if (start > end)
+	{
+		str = (char *)malloc(1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
+	str = (char *)malloc(end - start + 2);
+	if (!str)
+		return (NULL);
+	memcpy(str, s1 + start, end - start + 1);
+	str[end - start + 1] = '\0';
+	return (str);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		j;
-	int		len;
-	int		lenm;
-	char	*strmalloc;
+	int		check_tab[UCHAR_MAX + 1];
+	int		start;
+	int		end;
+	char	*str;
 
-	i = 0;
-	j = 0;
-	len = ft_strlen(s1) - 1;
-	while (is_set(s1[len], set) == 1)
-		len--;
-	while (is_set(s1[i], set) == 1)
-		i++;
-	lenm = len - i + 1;
-	strmalloc = ft_substr(s1, i, lenm);
-	while (i <= len && strmalloc != NULL)
-	{
-		strmalloc[j] = s1[i];
-		j++;
-		i++;
-	}
-	if (strmalloc != NULL)
-		strmalloc[j] = '\0';
-	return (strmalloc);
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (strdup(s1));
+	hash_table(check_tab, set);
+	start = 0;
+	while (s1[start] && check_tab[(unsigned char)s1[start]] == 1)
+		start++;
+	end = strlen(s1) - 1;
+	while (end >= start && check_tab[(unsigned char)s1[end]] == 1)
+		end--;
+	str = ft_set_str(start, end, s1);
+	return (str);
 }
+

@@ -22,13 +22,13 @@ void	ft_putnbr_fd(int n, int fd)
 		return ;
 	i = 0;
 	t = n;
+	if (t == 0)
+		write(fd, "0", 1);
 	if (t < 0)
 	{
 		t = t * -1;
 		write(fd, "-", 1);
 	}
-	if (t == 0)
-		write(fd, "0", 1);
 	while (t > 0)
 	{
 		ptr[i] = (t % 10) + '0';
