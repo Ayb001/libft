@@ -12,30 +12,28 @@
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void    ft_putnbr_fd(int n, int fd)
 {
-	int		i;
-	char	ptr[22];
-	long	t;
+    int     i;
+    char    ptr[22];
+    long    t;
 
-	if (fd < 0)
-		return ;
-	i = 0;
-	t = n;
-	if (t == 0)
-		write(fd, "0", 1);
-	if (t < 0)
-	{
-		t = t * -1;
-		write(fd, "-", 1);
-	}
-	while (t > 0)
-	{
-		ptr[i] = (t % 10) + '0';
-		t = t / 10;
-		i++;
-	}
-	ptr[i--] = '\0';
-	while (i >= 0)
-		write(fd, &ptr[i--], 1);
+    if (fd < 0)
+        return ;
+    i = 0;
+    t = n;
+    if (t == 0)
+        write(fd, "0", 1);
+    if (t < 0) {
+        t = t * -1;
+        write(fd, "-", 1);
+    }
+    while (t > 0) {
+        ptr[i] = (t % 10) + '0';
+        t = t / 10;
+        i++;
+    }
+    ptr[i--] = '\0';
+    while (i >= 0)
+        write(fd, &ptr[i--], 1);
 }

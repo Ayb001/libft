@@ -12,25 +12,22 @@
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void    *ft_calloc(size_t count, size_t size)
 {
-	unsigned char	*str;
-	size_t			i;
+    unsigned char   *str;
+    size_t          i;
 
-	i = 0;
-	if (size != 0 && count > SIZE_MAX / size)
-	{
-		return (0);
-	}
-	str = malloc(count * size);
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-	while (i < count * size)
-	{
-		str[i] = 0;
-		i++;
-	}
-	return (str);
+    i = 0;
+    if (size != 0 && count > SIZE_MAX / size) {
+        return (0);
+    }
+    str = malloc(count * size);
+    if (str == NULL) {
+        return (NULL);
+    }
+    while (i < count * size) {
+        str[i] = 0;
+        i++;
+    }
+    return (str);
 }
